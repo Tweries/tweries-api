@@ -9,6 +9,8 @@ const getTwitterTokens = require('./getTwitterTokens');
 
 const router = express.Router();
 
+const DOIT = false;
+
 // eslint-disable-next-line no-unused-vars
 router.get('/health', cors(), (req, res, next) => {
   res.send({ message: "👋 hello, I'm healty", name, version });
@@ -30,33 +32,35 @@ function send({
 
 // eslint-disable-next-line no-unused-vars
 router.use('/tweetstorm', cors(), async ({ body: { items, userId } }, res, next) => {
-  const auth0AccessToken = await getAuth0AccessToken({
-    clientId: process.env.AUTH0_CLIENT_ID,
-    clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    domain: process.env.AUTH0_DOMAIN,
-  });
+  if (DOIT) {
+    const auth0AccessToken = await getAuth0AccessToken({
+      clientId: process.env.AUTH0_CLIENT_ID,
+      clientSecret: process.env.AUTH0_CLIENT_SECRET,
+      domain: process.env.AUTH0_DOMAIN,
+    });
 
-  const {
-    accessToken: twitterAccessToken,
-    accessTokenSecret: twitterAccessTokenSecret,
-  } = await getTwitterTokens({
-    auth0AccessToken,
-    domain: process.env.AUTH0_DOMAIN,
-    userId,
-  });
-
-  let inReplyToStatusId = null;
-  await asyncForEach(items, async (item) => {
-    const tweet = await createTweet({
+    const {
       accessToken: twitterAccessToken,
       accessTokenSecret: twitterAccessTokenSecret,
-      consumerKey: process.env.TWITTER_API_KEY,
-      consumerSecret: process.env.TWITTER_API_SECRETE_KEY,
-      inReplyToStatusId,
-      status: item.tweet,
+    } = await getTwitterTokens({
+      auth0AccessToken,
+      domain: process.env.AUTH0_DOMAIN,
+      userId,
     });
-    inReplyToStatusId = tweet.data.id_str;
-  });
+
+    let inReplyToStatusId = null;
+    await asyncForEach(items, async (item) => {
+      const tweet = await createTweet({
+        accessToken: twitterAccessToken,
+        accessTokenSecret: twitterAccessTokenSecret,
+        consumerKey: process.env.TWITTER_API_KEY,
+        consumerSecret: process.env.TWITTER_API_SECRETE_KEY,
+        inReplyToStatusId,
+        status: item.tweet,
+      });
+      inReplyToStatusId = tweet.data.id_str;
+    });
+  }
 
   send({
     data: null,
