@@ -1,0 +1,40 @@
+require('dotenv').config();
+const fetch = require('node-fetch');
+
+// APP -> AUTH0 -> APP -> AUTH0 -> APP -> AUTH0 -> APP -> TWITTER
+
+/*
+// STEP 1
+
+const options = {
+  method: 'POST',
+  headers: { 'content-type': 'application/json' },
+  body: JSON.stringify({
+    client_id: process.env.AUTH0_CLIENT_ID,
+    client_secret: process.env.AUTH0_CLIENT_SECRET,
+    audience: 'https://dev-17-x3zfb.auth0.com/api/v2/',
+    grant_type: 'client_credentials',
+  }),
+};
+
+fetch('https://dev-17-x3zfb.auth0.com/oauth/token', options)
+  .then((response) => response.json())
+  .then(console.log)
+  .catch(console.log);
+*/
+
+// STEP 2
+// https://dev-17-x3zfb.auth0.com/api/v2/users/twitter|1183836409850814464
+
+const BEARER = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik5UVXpRVFE1T0RVelEwRTVPVEpFUlVNMFJEbEJRVUV4UlVGQk5EbEdRVU14TUVVNFJqVTJOdyJ9.eyJpc3MiOiJodHRwczovL2Rldi0xNy14M3pmYi5hdXRoMC5jb20vIiwic3ViIjoiUzZjZFFrb1ZVTWF2QW9MQjlidU5PejdJQmNzMm43enJAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vZGV2LTE3LXgzemZiLmF1dGgwLmNvbS9hcGkvdjIvIiwiaWF0IjoxNTcxMjg2MTU5LCJleHAiOjE1NzEzNzI1NTksImF6cCI6IlM2Y2RRa29WVU1hdkFvTEI5YnVOT3o3SUJjczJuN3pyIiwic2NvcGUiOiJyZWFkOmNsaWVudF9ncmFudHMgY3JlYXRlOmNsaWVudF9ncmFudHMgZGVsZXRlOmNsaWVudF9ncmFudHMgdXBkYXRlOmNsaWVudF9ncmFudHMgcmVhZDp1c2VycyB1cGRhdGU6dXNlcnMgZGVsZXRlOnVzZXJzIGNyZWF0ZTp1c2VycyByZWFkOnVzZXJzX2FwcF9tZXRhZGF0YSB1cGRhdGU6dXNlcnNfYXBwX21ldGFkYXRhIGRlbGV0ZTp1c2Vyc19hcHBfbWV0YWRhdGEgY3JlYXRlOnVzZXJzX2FwcF9tZXRhZGF0YSBjcmVhdGU6dXNlcl90aWNrZXRzIHJlYWQ6Y2xpZW50cyB1cGRhdGU6Y2xpZW50cyBkZWxldGU6Y2xpZW50cyBjcmVhdGU6Y2xpZW50cyByZWFkOmNsaWVudF9rZXlzIHVwZGF0ZTpjbGllbnRfa2V5cyBkZWxldGU6Y2xpZW50X2tleXMgY3JlYXRlOmNsaWVudF9rZXlzIHJlYWQ6Y29ubmVjdGlvbnMgdXBkYXRlOmNvbm5lY3Rpb25zIGRlbGV0ZTpjb25uZWN0aW9ucyBjcmVhdGU6Y29ubmVjdGlvbnMgcmVhZDpyZXNvdXJjZV9zZXJ2ZXJzIHVwZGF0ZTpyZXNvdXJjZV9zZXJ2ZXJzIGRlbGV0ZTpyZXNvdXJjZV9zZXJ2ZXJzIGNyZWF0ZTpyZXNvdXJjZV9zZXJ2ZXJzIHJlYWQ6ZGV2aWNlX2NyZWRlbnRpYWxzIHVwZGF0ZTpkZXZpY2VfY3JlZGVudGlhbHMgZGVsZXRlOmRldmljZV9jcmVkZW50aWFscyBjcmVhdGU6ZGV2aWNlX2NyZWRlbnRpYWxzIHJlYWQ6cnVsZXMgdXBkYXRlOnJ1bGVzIGRlbGV0ZTpydWxlcyBjcmVhdGU6cnVsZXMgcmVhZDpydWxlc19jb25maWdzIHVwZGF0ZTpydWxlc19jb25maWdzIGRlbGV0ZTpydWxlc19jb25maWdzIHJlYWQ6ZW1haWxfcHJvdmlkZXIgdXBkYXRlOmVtYWlsX3Byb3ZpZGVyIGRlbGV0ZTplbWFpbF9wcm92aWRlciBjcmVhdGU6ZW1haWxfcHJvdmlkZXIgYmxhY2tsaXN0OnRva2VucyByZWFkOnN0YXRzIHJlYWQ6dGVuYW50X3NldHRpbmdzIHVwZGF0ZTp0ZW5hbnRfc2V0dGluZ3MgcmVhZDpsb2dzIHJlYWQ6c2hpZWxkcyBjcmVhdGU6c2hpZWxkcyBkZWxldGU6c2hpZWxkcyByZWFkOmFub21hbHlfYmxvY2tzIGRlbGV0ZTphbm9tYWx5X2Jsb2NrcyB1cGRhdGU6dHJpZ2dlcnMgcmVhZDp0cmlnZ2VycyByZWFkOmdyYW50cyBkZWxldGU6Z3JhbnRzIHJlYWQ6Z3VhcmRpYW5fZmFjdG9ycyB1cGRhdGU6Z3VhcmRpYW5fZmFjdG9ycyByZWFkOmd1YXJkaWFuX2Vucm9sbG1lbnRzIGRlbGV0ZTpndWFyZGlhbl9lbnJvbGxtZW50cyBjcmVhdGU6Z3VhcmRpYW5fZW5yb2xsbWVudF90aWNrZXRzIHJlYWQ6dXNlcl9pZHBfdG9rZW5zIGNyZWF0ZTpwYXNzd29yZHNfY2hlY2tpbmdfam9iIGRlbGV0ZTpwYXNzd29yZHNfY2hlY2tpbmdfam9iIHJlYWQ6Y3VzdG9tX2RvbWFpbnMgZGVsZXRlOmN1c3RvbV9kb21haW5zIGNyZWF0ZTpjdXN0b21fZG9tYWlucyByZWFkOmVtYWlsX3RlbXBsYXRlcyBjcmVhdGU6ZW1haWxfdGVtcGxhdGVzIHVwZGF0ZTplbWFpbF90ZW1wbGF0ZXMgcmVhZDptZmFfcG9saWNpZXMgdXBkYXRlOm1mYV9wb2xpY2llcyByZWFkOnJvbGVzIGNyZWF0ZTpyb2xlcyBkZWxldGU6cm9sZXMgdXBkYXRlOnJvbGVzIHJlYWQ6cHJvbXB0cyB1cGRhdGU6cHJvbXB0cyByZWFkOmJyYW5kaW5nIHVwZGF0ZTpicmFuZGluZyIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.Q2rA254qwogjyNs0ttLUf-zEoMgl7WUBPQwJnO-cG_tJMSMqwa8I-8luCbK-C2j6gxzbNoStaKwZoqE2CxJs6bqB_RPCPTt5ExbRm-eqDpOXFgBXgzAobba06W59_1q9N9UOaa8lSwzcbxqmkmVWdvX9govIxjEhCxAg8_WMPtRSNVmmFLlmLR_juV6xXwUa1i5jk9cuB4OzfGCigkwR_ox6jnf_f8NP4f2tBLNEHZUzL0zGi3NFsZUvyftxwABEqYBnjRsBvTQBIBNt1c5XvsFJjXn2ds6ZYFrjQZ5HZh71h1pJJa_h8OEefba2JTjooHtgPU3goT-MS-uXoS7AFg';
+const ID = 'twitter|1183836409850814464';
+const URL = `https://dev-17-x3zfb.auth0.com/api/v2/users/${ID}`;
+
+fetch(URL, {
+  headers: {
+    authorization: `Bearer ${BEARER}`,
+  },
+})
+  .then((response) => response.json())
+  .then(console.log)
+  .catch(console.log);
