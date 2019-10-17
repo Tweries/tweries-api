@@ -1,6 +1,6 @@
 {
   "name": "china-musk-api",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "start": "node ./src/bin/www",
@@ -23,6 +23,6 @@
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "nodemon": "^1.19.3"
+    "nodemon": "^1.19.4"
   }
 }

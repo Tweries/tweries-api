@@ -2,6 +2,7 @@ const cors = require('cors');
 require('dotenv').config();
 const express = require('express');
 const { name, version } = require('../../package.json');
+const asyncForEach = require('./asyncForEach');
 const createTweet = require('./createTweet');
 const getAuth0AccessToken = require('./getAuth0AccessToken');
 const getTwitterTokens = require('./getTwitterTokens');
@@ -14,13 +15,13 @@ router.get('/health', cors(), (req, res, next) => {
 });
 
 function send({
-  data, error, items, res, userId,
+  data, error, items, message, res, userId,
 }) {
   res.send({
     data,
     error,
     items,
-    message: 'WIP',
+    message,
     name,
     userId,
     version,
@@ -44,21 +45,26 @@ router.use('/tweetstorm', cors(), async ({ body: { items, userId } }, res, next)
     userId,
   });
 
-  const tweet = await createTweet({
-    accessToken: twitterAccessToken,
-    accessTokenSecret: twitterAccessTokenSecret,
-    consumerKey: process.env.TWITTER_API_KEY,
-    consumerSecret: process.env.TWITTER_API_SECRETE_KEY,
-    inReplyToStatusId: null, // INFO: this must be a string
-    status: items[0].tweet,
+  let inReplyToStatusId = null;
+  await asyncForEach(items, async (item) => {
+    const tweet = await createTweet({
+      accessToken: twitterAccessToken,
+      accessTokenSecret: twitterAccessTokenSecret,
+      consumerKey: process.env.TWITTER_API_KEY,
+      consumerSecret: process.env.TWITTER_API_SECRETE_KEY,
+      inReplyToStatusId,
+      status: item.tweet,
+    });
+
+    inReplyToStatusId = tweet.data.id_str;
   });
 
   send({
     data: null,
     error: null,
     items,
+    message: '👌',
     res,
-    twitterStatusId: tweet.data.id_str,
     userId,
   });
 });
