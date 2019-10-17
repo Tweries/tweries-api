@@ -55,7 +55,6 @@ router.use('/tweetstorm', cors(), async ({ body: { items, userId } }, res, next)
       inReplyToStatusId,
       status: item.tweet,
     });
-
     inReplyToStatusId = tweet.data.id_str;
   });
 
