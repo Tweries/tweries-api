@@ -9,8 +9,6 @@ const getTwitterTokens = require('./getTwitterTokens');
 
 const router = express.Router();
 
-const DOIT = false;
-
 // eslint-disable-next-line no-unused-vars
 router.get('/health', cors(), (req, res, next) => {
   res.send({ message: "👋 hello, I'm healty", name, version });
@@ -32,7 +30,7 @@ function send({
 
 // eslint-disable-next-line no-unused-vars
 router.use('/tweetstorm', cors(), async ({ body: { items, userId } }, res, next) => {
-  if (DOIT) {
+  if (process.env.BYPASS === true) {
     const auth0AccessToken = await getAuth0AccessToken({
       clientId: process.env.AUTH0_CLIENT_ID,
       clientSecret: process.env.AUTH0_CLIENT_SECRET,

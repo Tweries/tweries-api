@@ -17,7 +17,7 @@ async function createTweet({
 
   let options = { status };
   if (inReplyToStatusId !== null) {
-    options = { ...options, in_reply_to_status_id: inReplyToStatusId };
+    options = { ...options, in_reply_to_status_id: inReplyToStatusId, source: 'Tweries' };
   }
 
   const response = await T.post('statuses/update', options);
