@@ -30,7 +30,7 @@ function send({
 
 // eslint-disable-next-line no-unused-vars
 router.use('/tweetstorm', cors(), async ({ body: { items, userId } }, res, next) => {
-  if (process.env.BYPASS === true) {
+  if (process.env.BYPASS === false) {
     const auth0AccessToken = await getAuth0AccessToken({
       clientId: process.env.AUTH0_CLIENT_ID,
       clientSecret: process.env.AUTH0_CLIENT_SECRET,
