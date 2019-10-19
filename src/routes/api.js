@@ -1,4 +1,5 @@
 const cors = require('cors');
+const debug = require('debug')('china-musk-api:routes/api.js');
 require('dotenv').config();
 const express = require('express');
 const { name, version } = require('../../package.json');
@@ -9,16 +10,31 @@ const getTwitterTokens = require('./getTwitterTokens');
 
 const router = express.Router();
 
+const {
+  AUTH0_CLIENT_ID,
+  AUTH0_CLIENT_SECRET,
+  AUTH0_DOMAIN,
+  BYPASS,
+  TWITTER_API_KEY,
+  TWITTER_API_SECRETE_KEY,
+} = process.env;
+
 // eslint-disable-next-line no-unused-vars
 router.get('/health', cors(), (req, res, next) => {
-  res.send({ message: "👋 hello, I'm healty", name, version });
+  res.send({
+    env: req.app.get('env'),
+    message: "👋 hello, I'm healty",
+    name,
+    version,
+  });
 });
 
 function send({
-  data, error, items, message, res, userId,
+  data, error, items, message, req, res, userId,
 }) {
   res.send({
     data,
+    env: req.app.get('env'),
     error,
     items,
     message,
@@ -29,14 +45,18 @@ function send({
 }
 
 // eslint-disable-next-line no-unused-vars
-router.use('/tweetstorm', cors(), async ({ body: { items, userId } }, res, next) => {
-  if (process.env.BYPASS === 'true') {
-    // TODO: !?!
+router.use('/tweetstorm', cors(), async (req, res, next) => {
+  const {
+    body: { items, userId },
+  } = req;
+
+  if (BYPASS === 'true') {
+    debug('BYPASS');
   } else {
     const auth0AccessToken = await getAuth0AccessToken({
-      clientId: process.env.AUTH0_CLIENT_ID,
-      clientSecret: process.env.AUTH0_CLIENT_SECRET,
-      domain: process.env.AUTH0_DOMAIN,
+      clientId: AUTH0_CLIENT_ID,
+      clientSecret: AUTH0_CLIENT_SECRET,
+      domain: AUTH0_DOMAIN,
     });
 
     const {
@@ -44,7 +64,7 @@ router.use('/tweetstorm', cors(), async ({ body: { items, userId } }, res, next)
       accessTokenSecret: twitterAccessTokenSecret,
     } = await getTwitterTokens({
       auth0AccessToken,
-      domain: process.env.AUTH0_DOMAIN,
+      domain: AUTH0_DOMAIN,
       userId,
     });
 
@@ -53,8 +73,8 @@ router.use('/tweetstorm', cors(), async ({ body: { items, userId } }, res, next)
       const tweet = await createTweet({
         accessToken: twitterAccessToken,
         accessTokenSecret: twitterAccessTokenSecret,
-        consumerKey: process.env.TWITTER_API_KEY,
-        consumerSecret: process.env.TWITTER_API_SECRETE_KEY,
+        consumerKey: TWITTER_API_KEY,
+        consumerSecret: TWITTER_API_SECRETE_KEY,
         inReplyToStatusId,
         status: item.tweet,
       });
@@ -67,6 +87,7 @@ router.use('/tweetstorm', cors(), async ({ body: { items, userId } }, res, next)
     error: null,
     items,
     message: '👌',
+    req,
     res,
     userId,
   });
