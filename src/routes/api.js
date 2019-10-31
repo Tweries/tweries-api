@@ -1,5 +1,5 @@
 const cors = require('cors');
-const debug = require('debug')('china-musk-api:routes/api.js');
+const debug = require('debug')('tweries-api:routes/api.js');
 require('dotenv').config();
 const express = require('express');
 const { name, version } = require('../../package.json');

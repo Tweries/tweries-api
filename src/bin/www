@@ -8,7 +8,7 @@
  * Module dependencies.
  */
 
-const debug = require('debug')('china-musk-api:bin/www');
+const debug = require('debug')('tweries-api:bin/www');
 const http = require('http');
 const app = require('../app');
 
