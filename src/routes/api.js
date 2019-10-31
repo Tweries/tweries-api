@@ -15,11 +15,12 @@ const {
   AUTH0_CLIENT_SECRET,
   AUTH0_DOMAIN,
   BYPASS,
+  ORIGIN,
   TWITTER_API_KEY,
   TWITTER_API_SECRETE_KEY,
 } = process.env;
 
-const corsOptions = { origin: 'https://tweries.com' };
+const corsOptions = { origin: ORIGIN };
 
 // eslint-disable-next-line no-unused-vars
 router.get('/health', cors(corsOptions), (req, res, next) => {
