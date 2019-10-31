@@ -19,8 +19,10 @@ const {
   TWITTER_API_SECRETE_KEY,
 } = process.env;
 
+const corsOptions = { origin: 'https://tweries.com' };
+
 // eslint-disable-next-line no-unused-vars
-router.get('/health', cors(), (req, res, next) => {
+router.get('/health', cors(corsOptions), (req, res, next) => {
   res.send({
     env: req.app.get('env'),
     message: "👋 hello, I'm healty",
@@ -45,7 +47,7 @@ function send({
 }
 
 // eslint-disable-next-line no-unused-vars
-router.use('/tweetstorm', cors(), async (req, res, next) => {
+router.use('/tweetstorm', cors(corsOptions), async (req, res, next) => {
   const {
     body: { items, userId },
   } = req;
