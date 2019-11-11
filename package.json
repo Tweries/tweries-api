@@ -1,7 +1,8 @@
 {
   "name": "tweries-api",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "private": true,
+  "description": "API and back end for Tweries.",
   "scripts": {
     "start": "node ./src/bin/www",
     "start:dev": "DEBUG=tweries-api:* PORT=9000 nodemon ./src/bin/www"
