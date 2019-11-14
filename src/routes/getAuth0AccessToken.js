@@ -6,10 +6,10 @@ async function getAuth0AccessToken({ clientId, clientSecret, domain }) {
       audience: `https://${domain}/api/v2/`,
       client_id: clientId,
       client_secret: clientSecret,
-      grant_type: 'client_credentials',
+      grant_type: 'client_credentials'
     }),
     headers: { 'content-type': 'application/json' },
-    method: 'POST',
+    method: 'POST'
   };
 
   const response = await fetch(`https://${domain}/oauth/token`, options);
