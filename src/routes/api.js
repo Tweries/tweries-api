@@ -40,11 +40,16 @@ async function send({ ids, items, message, req, res, userId }) {
     items,
     message,
     name,
+    timestamp: Date.now(),
     userId,
     version
   };
-  const { error, result } = await insert(response);
-  res.send({ ...response, error, result });
+  if (BYPASS === 'true') {
+    res.send(response);
+  } else {
+    const { error, result } = await insert(response);
+    res.send({ ...response, error, result });
+  }
 }
 
 // eslint-disable-next-line no-unused-vars
