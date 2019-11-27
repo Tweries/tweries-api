@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createTweet new status 1`] = `
+Object {
+  "source": "<a href=\\"https://tweries.com\\" rel=\\"noopener noreferrer\\" target=\\"_blank\\">Tweries</a>",
+  "status": "This is my Tweet!",
+}
+`;
+
+exports[`createTweet reply to status 1`] = `
+Object {
+  "in_reply_to_status_id": "1199393733436788736",
+  "source": "<a href=\\"https://tweries.com\\" rel=\\"noopener noreferrer\\" target=\\"_blank\\">Tweries</a>",
+  "status": "This is my Tweet!",
+}
+`;
