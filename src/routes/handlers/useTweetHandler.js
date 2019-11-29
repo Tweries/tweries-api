@@ -34,12 +34,14 @@ async function useTweetHandler(req, res, next) {
   });
 
   let error;
+  let statusId;
   try {
     const tweet = await showTweet({
       tweetUrl,
       T
     });
     debug(tweet);
+    statusId = tweet.id_str;
   } catch (error_) {
     error = error_;
   }
@@ -48,6 +50,7 @@ async function useTweetHandler(req, res, next) {
     env: req.app.get('env'),
     error,
     name,
+    statusId,
     timestamp: Date.now(),
     tweetUrl,
     userId,

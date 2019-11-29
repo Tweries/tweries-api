@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { matcher, mockSend, reqBase, resBase } = require('../mocks');
+const { matcher, mockSend, reqBase, resBase, tweet } = require('../mocks');
 const makeT = require('../makeT');
 const useTweetHandler = require('./useTweetHandler');
 
@@ -40,7 +40,7 @@ describe('useTweetHandler', () => {
   });
 
   it('response w/o error', async () => {
-    makeT.mockImplementation(() => ({ get: jest.fn() }));
+    makeT.mockImplementation(() => ({ get: jest.fn(() => tweet) }));
 
     await useTweetHandler(req, res);
 
