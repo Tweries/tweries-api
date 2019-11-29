@@ -10,4 +10,4 @@ function getHealthHandler(req, res, next) {
   });
 }
 
-module.exports = getHealthHandler; // TODO: add test
+module.exports = getHealthHandler;
