@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useTweetstormHandler 1`] = `
+Object {
+  "env": "test",
+  "ids": Array [],
+  "items": Array [
+    "TODO",
+  ],
+  "message": "👌",
+  "name": "tweries-api",
+  "timestamp": Any<Number>,
+  "userId": "twitter|1183836409850814464",
+  "version": "0.10.0",
+}
+`;

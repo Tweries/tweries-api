@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { mockSend, reqBase, resBase } = require('../mocks');
+const { matcher, mockSend, reqBase, resBase } = require('../mocks');
 const makeT = require('../makeT');
 const useTweetHandler = require('./useTweetHandler');
 
@@ -14,10 +14,6 @@ const req = {
 };
 
 const res = { ...resBase };
-
-const matcher = {
-  timestamp: expect.any(Number)
-};
 
 describe('useTweetHandler', () => {
   beforeEach(() => {

@@ -7,4 +7,8 @@ const reqBase = {
 const mockSend = jest.fn();
 const resBase = { send: mockSend };
 
-module.exports = { mockSend, reqBase, resBase };
+const matcher = {
+  timestamp: expect.any(Number)
+};
+
+module.exports = { matcher, mockSend, reqBase, resBase };
