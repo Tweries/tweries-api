@@ -8,7 +8,7 @@ Object {
   "name": "tweries-api",
   "statusId": undefined,
   "timestamp": Any<Number>,
-  "tweetUrl": "https://twitter.com/trisweb/status/1200501818461212672",
+  "tweetUrl": "https://twitter.com/musk_china/status/1199474666412236800",
   "userId": "twitter|1183836409850814464",
   "version": "0.10.0",
 }
@@ -20,9 +20,9 @@ Object {
   "error": undefined,
   "message": "✅",
   "name": "tweries-api",
-  "statusId": "1200521619145256960",
+  "statusId": "1199474666412236800",
   "timestamp": Any<Number>,
-  "tweetUrl": "https://twitter.com/trisweb/status/1200501818461212672",
+  "tweetUrl": "https://twitter.com/musk_china/status/1199474666412236800",
   "userId": "twitter|1183836409850814464",
   "version": "0.10.0",
 }

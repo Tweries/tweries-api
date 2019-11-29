@@ -8,7 +8,7 @@ jest.mock('./makeT');
 const req = {
   ...reqBase,
   body: {
-    tweetUrl: 'https://twitter.com/trisweb/status/1200501818461212672',
+    tweetUrl: 'https://twitter.com/musk_china/status/1199474666412236800',
     userId: 'twitter|1183836409850814464'
   }
 };
@@ -40,7 +40,7 @@ describe('useTweetHandler', () => {
   });
 
   it('response w/o error', async () => {
-    makeT.mockImplementation(() => ({ get: jest.fn(() => tweet) }));
+    makeT.mockImplementation(() => ({ get: jest.fn(() => ({ data: tweet })) }));
 
     await useTweetHandler(req, res);
 
