@@ -6,8 +6,8 @@ Object {
   "error": [Error: Oh Noes!],
   "message": "Oh Noes!",
   "name": "tweries-api",
-  "statusId": "1200471390236766208",
   "timestamp": Any<Number>,
+  "tweetUrl": "https://twitter.com/trisweb/status/1200501818461212672",
   "userId": "twitter|1183836409850814464",
   "version": "0.10.0",
 }
@@ -19,8 +19,8 @@ Object {
   "error": undefined,
   "message": "✅",
   "name": "tweries-api",
-  "statusId": "1200471390236766208",
   "timestamp": Any<Number>,
+  "tweetUrl": "https://twitter.com/trisweb/status/1200501818461212672",
   "userId": "twitter|1183836409850814464",
   "version": "0.10.0",
 }

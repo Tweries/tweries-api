@@ -10,7 +10,7 @@ const { AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_DOMAIN } = process.env;
 // eslint-disable-next-line no-unused-vars
 async function useTweetHandler(req, res, next) {
   const {
-    body: { statusId, userId }
+    body: { tweetUrl, userId }
   } = req;
 
   const auth0AccessToken = await getAuth0AccessToken({
@@ -36,7 +36,7 @@ async function useTweetHandler(req, res, next) {
   let error;
   try {
     const tweet = await showTweet({
-      statusId,
+      tweetUrl,
       T
     });
     debug(tweet);
@@ -49,7 +49,7 @@ async function useTweetHandler(req, res, next) {
     error,
     name,
     timestamp: Date.now(),
-    statusId,
+    tweetUrl,
     userId,
     version
   };

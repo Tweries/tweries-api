@@ -4,7 +4,7 @@ test('showTweet', async () => {
   const mockGet = jest.fn(() => ({}));
 
   const options = {
-    statusId: '1199793406886608896',
+    tweetUrl: 'https://twitter.com/trisweb/status/1200501818461212672',
     T: { get: mockGet }
   };
 

@@ -8,7 +8,7 @@ jest.mock('../makeT');
 const req = {
   ...reqBase,
   body: {
-    statusId: '1200471390236766208',
+    tweetUrl: 'https://twitter.com/trisweb/status/1200501818461212672',
     userId: 'twitter|1183836409850814464'
   }
 };
