@@ -18,6 +18,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "http-errors": "^1.7.3",
+    "jest-fetch-mock": "^2.1.2",
     "mongodb": "^3.3.4",
     "morgan": "~1.9.1",
     "node-fetch": "^2.6.0",
@@ -33,6 +34,7 @@
     "prettier": "^1.19.1"
   },
   "jest": {
+    "automock": false,
     "collectCoverageFrom": [
       "src/**/*.js",
       "!src/app.js",
@@ -42,6 +44,9 @@
       "!src/routes/getTwitterTokens.js",
       "!src/routes/index.js",
       "!src/routes/makeT.js"
+    ],
+    "setupFiles": [
+      "./setupJest.js"
     ]
   }
 }

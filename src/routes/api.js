@@ -4,8 +4,8 @@ require('dotenv').config();
 const express = require('express');
 const { name, version } = require('../../package.json');
 const { insert } = require('../db/index');
-const getHealth = require('./paths/getHealth');
-const useTweet = require('./paths/useTweet');
+const getHealthHandler = require('./handlers/getHealthHandler');
+const useTweetHandler = require('./handlers/useTweetHandler');
 const asyncForEach = require('./asyncForEach');
 const createTweet = require('./createTweet');
 const getAuth0AccessToken = require('./getAuth0AccessToken');
@@ -24,9 +24,9 @@ const {
 
 const corsOptions = { origin: ORIGIN };
 
-useTweet({ corsHandler: cors(corsOptions), router });
+router.get('/health', cors(corsOptions), getHealthHandler);
 
-getHealth({ corsHandler: cors(corsOptions), router });
+router.use('/tweet', cors(corsOptions), useTweetHandler);
 
 async function send({ ids, items, message, req, res, userId }) {
   const response = {
