@@ -1,9 +1,9 @@
 const fetch = require('node-fetch');
-const { matcher, mockSend, reqBase, resBase, tweet } = require('../mocks');
-const makeT = require('../makeT');
+const makeT = require('./makeT');
+const { matcher, mockSend, reqBase, resBase, tweet } = require('./mocks');
 const useTweetHandler = require('./useTweetHandler');
 
-jest.mock('../makeT');
+jest.mock('./makeT');
 
 const req = {
   ...reqBase,

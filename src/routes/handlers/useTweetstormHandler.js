@@ -3,11 +3,11 @@ const debug = require('debug')(
 );
 const { name, version } = require('../../../package.json');
 const { insert } = require('../../db/index');
-const asyncForEach = require('../asyncForEach');
-const createTweet = require('../createTweet');
-const getAuth0AccessToken = require('../getAuth0AccessToken');
-const getTwitterTokens = require('../getTwitterTokens');
-const makeT = require('../makeT');
+const asyncForEach = require('./asyncForEach');
+const createTweet = require('./createTweet');
+const getAuth0AccessToken = require('./getAuth0AccessToken');
+const getTwitterTokens = require('./getTwitterTokens');
+const makeT = require('./makeT');
 
 const {
   AUTH0_CLIENT_ID,
@@ -38,7 +38,7 @@ async function send({ ids, items, message, req, res, userId }) {
 // eslint-disable-next-line no-unused-vars
 async function useTweetstormHandler(req, res, next) {
   const {
-    body: { items, userId }
+    body: { items, replyToStatusId, userId }
   } = req;
 
   const ids = [];
@@ -65,7 +65,7 @@ async function useTweetstormHandler(req, res, next) {
       accessTokenSecret: twitterAccessTokenSecret
     });
 
-    let inReplyToStatusId = null;
+    let inReplyToStatusId = replyToStatusId;
     await asyncForEach(items, async item => {
       const tweet = await createTweet({
         inReplyToStatusId,

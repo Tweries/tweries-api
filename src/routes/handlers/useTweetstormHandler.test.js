@@ -1,11 +1,12 @@
-const { matcher, mockSend, reqBase, resBase } = require('../mocks');
+const { matcher, mockSend, reqBase, resBase } = require('./mocks');
 const useTweetstormHandler = require('./useTweetstormHandler');
 
 test('useTweetstormHandler', async () => {
   const req = {
     ...reqBase,
     body: {
-      items: ['TODO'],
+      items: ['Prediction is very difficult, especially about the future.'],
+      replyToStatusId: '1200521619145256960',
       userId: 'twitter|1183836409850814464'
     }
   };

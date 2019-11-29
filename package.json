@@ -39,11 +39,9 @@
       "src/**/*.js",
       "!src/app.js",
       "!src/db/index.js",
-      "!src/routes/asyncForEach.js",
-      "!src/routes/getAuth0AccessToken.js",
-      "!src/routes/getTwitterTokens.js",
       "!src/routes/index.js",
-      "!src/routes/makeT.js"
+      "!src/routes/handlers/asyncForEach.js",
+      "!src/routes/handlers/makeT.js"
     ],
     "setupFiles": [
       "./setupJest.js"

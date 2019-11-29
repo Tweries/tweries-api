@@ -1,8 +1,8 @@
 const debug = require('debug')('tweries-api:routes/paths/useTweet.js');
 const { name, version } = require('../../../package.json');
-const getAuth0AccessToken = require('../getAuth0AccessToken');
-const getTwitterTokens = require('../getTwitterTokens');
-const makeT = require('../makeT');
+const getAuth0AccessToken = require('./getAuth0AccessToken');
+const getTwitterTokens = require('./getTwitterTokens');
+const makeT = require('./makeT');
 const showTweet = require('./showTweet');
 
 const { AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_DOMAIN } = process.env;
