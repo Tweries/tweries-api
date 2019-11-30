@@ -36,7 +36,7 @@ describe('useTweetHandler', () => {
       ]
     );
 
-    res.send.mockReset();
+    mockSend.mockReset();
   });
 
   it('response w/o error', async () => {
