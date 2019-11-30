@@ -34,6 +34,7 @@ async function useTweetHandler(req, res, next) {
   });
 
   let error;
+  let message;
   let statusId;
   try {
     const tweet = await showTweet({
@@ -41,6 +42,7 @@ async function useTweetHandler(req, res, next) {
       T
     });
     debug(tweet);
+    message = tweet.text;
     statusId = tweet.id_str;
   } catch (error_) {
     error = error_;
@@ -61,7 +63,7 @@ async function useTweetHandler(req, res, next) {
     response.error = error;
     response.message = error.message;
   } else {
-    response.message = '✅';
+    response.message = message;
   }
 
   res.send(response);
