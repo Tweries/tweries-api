@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getHealthHandler 1`] = `
+Object {
+  "env": "test",
+  "message": "👋 hello, I'm healty",
+  "name": "tweries-api",
+  "version": "0.10.0",
+}
+`;

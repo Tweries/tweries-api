@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useTweetHandler response w/ error 1`] = `
+Object {
+  "env": "test",
+  "error": [Error: Oh Noes!],
+  "message": "Oh Noes!",
+  "name": "tweries-api",
+  "statusId": undefined,
+  "timestamp": Any<Number>,
+  "tweetUrl": "https://twitter.com/musk_china/status/1199474666412236800",
+  "userId": "twitter|1183836409850814464",
+  "version": "0.10.0",
+}
+`;
+
+exports[`useTweetHandler response w/o error 1`] = `
+Object {
+  "env": "test",
+  "error": undefined,
+  "message": "✅",
+  "name": "tweries-api",
+  "statusId": "1199474666412236800",
+  "timestamp": Any<Number>,
+  "tweetUrl": "https://twitter.com/musk_china/status/1199474666412236800",
+  "userId": "twitter|1183836409850814464",
+  "version": "0.10.0",
+}
+`;
