@@ -1,5 +1,10 @@
+const {
+  matcherV2,
+  mockSend,
+  reqBase,
+  resBase
+} = require('../../handlers/mocks');
 const getHealthHandler = require('./getHealthHandler');
-const { mockSend, reqBase, resBase } = require('./mocks');
 
 test('getHealthHandler', () => {
   const req = { ...reqBase };
@@ -7,5 +12,5 @@ test('getHealthHandler', () => {
 
   getHealthHandler(req, res);
 
-  expect(mockSend.mock.calls[0][0]).toMatchSnapshot();
+  expect(mockSend.mock.calls[0][0]).toMatchSnapshot(matcherV2);
 });
