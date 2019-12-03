@@ -10,7 +10,7 @@ Object {
   "timestamp": Any<Number>,
   "tweetUrl": "https://twitter.com/musk_china/status/1199474666412236800",
   "userId": "twitter|1183836409850814464",
-  "version": "0.10.1",
+  "version": "0.11.0",
 }
 `;
 
@@ -24,6 +24,6 @@ Object {
   "timestamp": Any<Number>,
   "tweetUrl": "https://twitter.com/musk_china/status/1199474666412236800",
   "userId": "twitter|1183836409850814464",
-  "version": "0.10.1",
+  "version": "0.11.0",
 }
 `;
