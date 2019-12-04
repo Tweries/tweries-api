@@ -10,7 +10,7 @@ Object {
     "env": "test",
     "name": "tweries-api",
     "timestamp": Any<Number>,
-    "version": "0.11.1",
+    "version": Any<String>,
   },
 }
 `;

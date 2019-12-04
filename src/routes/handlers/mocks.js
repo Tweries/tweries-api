@@ -13,7 +13,8 @@ const matcher = {
 
 const matcherV2 = {
   meta: {
-    timestamp: expect.any(Number)
+    timestamp: expect.any(Number),
+    version: expect.any(String)
   }
 };
 
