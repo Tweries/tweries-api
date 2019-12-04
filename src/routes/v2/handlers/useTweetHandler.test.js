@@ -1,9 +1,15 @@
 const fetch = require('node-fetch');
-const makeT = require('./makeT');
-const { matcher, mockSend, reqBase, resBase, tweet } = require('./mocks');
+const makeT = require('../../handlers/makeT');
+const {
+  matcherV2,
+  mockSend,
+  reqBase,
+  resBase,
+  tweet
+} = require('../../handlers/mocks');
 const useTweetHandler = require('./useTweetHandler');
 
-jest.mock('./makeT');
+jest.mock('../../handlers/makeT');
 
 const req = {
   ...reqBase,
@@ -44,7 +50,7 @@ describe('useTweetHandler', () => {
 
     await useTweetHandler(req, res);
 
-    expect(mockSend.mock.calls[0][0]).toMatchSnapshot(matcher);
+    expect(mockSend.mock.calls[0][0]).toMatchSnapshot(matcherV2);
   });
 
   it('response w/ error', async () => {
@@ -56,6 +62,6 @@ describe('useTweetHandler', () => {
 
     await useTweetHandler(req, res);
 
-    expect(mockSend.mock.calls[0][0]).toMatchSnapshot(matcher);
+    expect(mockSend.mock.calls[0][0]).toMatchSnapshot(matcherV2);
   });
 });

@@ -1,8 +1,8 @@
 const getAuth0AccessToken = require('../../handlers/getAuth0AccessToken');
 const getTwitterTokens = require('../../handlers/getTwitterTokens');
 const makeT = require('../../handlers/makeT');
-const showTweet = require('../../handlers/showTweet');
 const createResponse = require('./createResponse');
+const showTweet = require('./showTweet');
 
 const { AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_DOMAIN } = process.env;
 
@@ -35,8 +35,7 @@ async function useTweetHandler(req, res, next) {
   let data;
   let error;
   try {
-    const tweet = await showTweet({ tweetUrl, T });
-    data = tweet;
+    data = await showTweet({ tweetUrl, T });
   } catch (error_) {
     error = error_;
   }
