@@ -1,7 +1,7 @@
 const { matcher, mockSend, reqBase, resBase } = require('./mocks');
 const useTweetstormHandler = require('./useTweetstormHandler');
 
-test('useTweetstormHandler', async () => {
+test.skip('useTweetstormHandler', async () => {
   const req = {
     ...reqBase,
     body: {

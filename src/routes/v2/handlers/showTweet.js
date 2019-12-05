@@ -1,5 +1,7 @@
+const getStatusId = require('./getStatusId');
+
 async function showTweet({ tweetUrl, T }) {
-  const statusId = tweetUrl.split('/')[tweetUrl.split('/').length - 1];
+  const statusId = getStatusId(tweetUrl);
   const options = { id: statusId };
   const { data } = await T.get('statuses/show', options);
   return data;

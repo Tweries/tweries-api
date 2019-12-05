@@ -1,7 +1,8 @@
 const dictionary = { env: 'test' };
 
 const reqBase = {
-  app: { get: key => dictionary[key] }
+  app: { get: key => dictionary[key] },
+  originalUrl: '/api/v1/mock'
 };
 
 const mockSend = jest.fn();

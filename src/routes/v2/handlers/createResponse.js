@@ -8,6 +8,7 @@ function createResponse({ data, error, meta, req }) {
       ...meta,
       env: req.app.get('env'),
       name,
+      originalUrl: req.originalUrl,
       timestamp: Date.now(),
       version
     }
