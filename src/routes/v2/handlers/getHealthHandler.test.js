@@ -1,5 +1,5 @@
-const { matcherV2, mockSend, reqBase, resBase } = require('./mocks');
 const getHealthHandler = require('./getHealthHandler');
+const { matcherV2, mockSend, reqBase, resBase } = require('./mocks');
 
 test('getHealthHandler', () => {
   const req = { ...reqBase };

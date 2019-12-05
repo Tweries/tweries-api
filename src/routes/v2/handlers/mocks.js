@@ -8,10 +8,6 @@ const reqBase = {
 const mockSend = jest.fn();
 const resBase = { send: mockSend };
 
-const matcher = {
-  timestamp: expect.any(Number)
-};
-
 const matcherV2 = {
   meta: {
     timestamp: expect.any(Number),
@@ -92,4 +88,4 @@ const tweet = {
   lang: 'en'
 };
 
-module.exports = { matcher, matcherV2, mockSend, reqBase, resBase, tweet };
+module.exports = { matcherV2, mockSend, reqBase, resBase, tweet };
