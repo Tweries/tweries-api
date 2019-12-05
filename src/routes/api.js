@@ -3,8 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const getHealthHandler = require('./v2/handlers/getHealthHandler');
 const useTweetHandler = require('./v2/handlers/useTweetHandler');
-const useTweetstormHandler = require('./handlers/useTweetstormHandler');
-const useTweetstormHandlerV2 = require('./v2/handlers/useTweetstormHandler');
+const useTweetstormHandler = require('./v2/handlers/useTweetstormHandler');
 
 const router = express.Router();
 
@@ -16,8 +15,6 @@ router.get('/v2/health', cors(corsOptions), getHealthHandler);
 
 router.use('/v2/tweet', cors(corsOptions), useTweetHandler);
 
-router.use('/v1/tweetstorm', cors(corsOptions), useTweetstormHandler);
-
-router.use('/v2/tweetstorm', cors(corsOptions), useTweetstormHandlerV2);
+router.use('/v2/tweetstorm', cors(corsOptions), useTweetstormHandler);
 
 module.exports = router;

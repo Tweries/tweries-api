@@ -1,4 +1,4 @@
-const { matcherV2, reqBase } = require('../../handlers/mocks');
+const { matcherV2, reqBase } = require('./mocks');
 const createResponse = require('./createResponse');
 
 // INFO: this is a WIP

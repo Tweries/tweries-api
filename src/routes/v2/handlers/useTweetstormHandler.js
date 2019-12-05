@@ -1,11 +1,11 @@
 const { insert } = require('../../../db/index');
-const asyncForEach = require('../../handlers/asyncForEach');
-const createTweet = require('../../handlers/createTweet');
-const getAuth0AccessToken = require('../../handlers/getAuth0AccessToken');
-const getTwitterTokens = require('../../handlers/getTwitterTokens');
-const makeT = require('../../handlers/makeT');
+const asyncForEach = require('./asyncForEach');
 const createResponse = require('./createResponse');
+const createTweet = require('./createTweet');
+const getAuth0AccessToken = require('./getAuth0AccessToken');
 const getStatusId = require('./getStatusId');
+const getTwitterTokens = require('./getTwitterTokens');
+const makeT = require('./makeT');
 
 const {
   AUTH0_CLIENT_ID,
