@@ -8,7 +8,10 @@ const MONGODB_URI = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@cluster0-
 
 async function insert(response) {
   try {
-    const client = new MongoClient(MONGODB_URI, { useNewUrlParser: true });
+    const client = new MongoClient(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
     await client.connect();
     const collection = client
       .db(`${name}_${NODE_ENV || 'dev'}`)

@@ -1,16 +1,21 @@
 const dictionary = { env: 'test' };
 
 const reqBase = {
-  app: { get: key => dictionary[key] }
+  app: { get: key => dictionary[key] },
+  originalUrl: '/api/v1/mock'
 };
 
 const mockSend = jest.fn();
 const resBase = { send: mockSend };
 
-const matcher = {
-  timestamp: expect.any(Number)
+const matcherV2 = {
+  meta: {
+    timestamp: expect.any(Number),
+    version: expect.any(String)
+  }
 };
 
+// TODO: rename this object
 const tweet = {
   created_at: 'Tue Nov 26 23:47:00 +0000 2019',
   id: 1199474666412236800,
@@ -83,4 +88,4 @@ const tweet = {
   lang: 'en'
 };
 
-module.exports = { matcher, mockSend, reqBase, resBase, tweet };
+module.exports = { matcherV2, mockSend, reqBase, resBase, tweet };
