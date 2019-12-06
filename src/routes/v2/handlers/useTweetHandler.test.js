@@ -40,7 +40,7 @@ describe('useTweetHandler', () => {
   });
 
   it('response w/o error', async () => {
-    makeT.mockImplementation(() => ({ get: jest.fn(() => ({ data: tweet })) }));
+    makeT.mockImplementation(() => ({ get: () => ({ data: tweet }) }));
 
     await useTweetHandler(req, res);
 

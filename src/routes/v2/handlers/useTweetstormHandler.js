@@ -7,12 +7,7 @@ const getStatusId = require('./getStatusId');
 const getTwitterTokens = require('./getTwitterTokens');
 const makeT = require('./makeT');
 
-const {
-  AUTH0_CLIENT_ID,
-  AUTH0_CLIENT_SECRET,
-  AUTH0_DOMAIN,
-  BYPASS
-} = process.env;
+const { AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_DOMAIN } = process.env;
 
 // eslint-disable-next-line no-unused-vars
 async function useTweetstormHandler(req, res, next) {
@@ -20,6 +15,7 @@ async function useTweetstormHandler(req, res, next) {
     body: { items, inReplyToTweetUrl, userId }
   } = req;
 
+  const { BYPASS } = process.env;
   if (BYPASS === 'true') {
     const response = createResponse({ data: { message: 'BYPASS' }, req });
     res.send(response);
