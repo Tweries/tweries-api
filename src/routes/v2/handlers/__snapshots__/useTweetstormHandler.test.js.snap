@@ -19,6 +19,11 @@ Object {
 exports[`useTweetstormHandler to match snapshot w/ error 1`] = `
 Object {
   "data": Object {
+    "items": Array [
+      Object {
+        "tweet": "Hello #Tweries",
+      },
+    ],
     "statusIds": Array [
       "mock_id",
     ],
@@ -37,6 +42,11 @@ Object {
 exports[`useTweetstormHandler to match snapshot w/ result 1`] = `
 Object {
   "data": Object {
+    "items": Array [
+      Object {
+        "tweet": "Hello #Tweries",
+      },
+    ],
     "result": Object {
       "n": 1,
       "ok": 1,

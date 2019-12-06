@@ -53,7 +53,7 @@ async function useTweetstormHandler(req, res, next) {
       statusIds.push(inReplyToStatusId);
     });
 
-    const response = createResponse({ data: { statusIds }, req });
+    const response = createResponse({ data: { items, statusIds }, req });
 
     // INFO: not a huge fan of this design
     const { error, result } = await insert(response);
