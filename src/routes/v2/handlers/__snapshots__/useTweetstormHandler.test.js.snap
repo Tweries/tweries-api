@@ -27,6 +27,7 @@ Object {
     "statusIds": Array [
       "mock_id",
     ],
+    "userId": "twitter|1183836409850814464",
   },
   "error": [Error: Oh Noes!],
   "meta": Object {
@@ -54,6 +55,7 @@ Object {
     "statusIds": Array [
       "mock_id",
     ],
+    "userId": "twitter|1183836409850814464",
   },
   "error": undefined,
   "meta": Object {

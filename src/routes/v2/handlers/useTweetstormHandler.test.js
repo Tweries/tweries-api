@@ -48,7 +48,13 @@ describe('useTweetstormHandler', () => {
       post: () => ({ data: { id_str: 'mock_id' } })
     }));
 
-    const req = { ...reqBase, body: { items: [{ tweet: 'Hello #Tweries' }] } };
+    const req = {
+      ...reqBase,
+      body: {
+        items: [{ tweet: 'Hello #Tweries' }],
+        userId: 'twitter|1183836409850814464'
+      }
+    };
     const res = { ...resBase };
 
     await useTweetstormHandler(req, res);
@@ -62,7 +68,13 @@ describe('useTweetstormHandler', () => {
       post: () => ({ data: { id_str: 'mock_id' } })
     }));
 
-    const req = { ...reqBase, body: { items: [{ tweet: 'Hello #Tweries' }] } };
+    const req = {
+      ...reqBase,
+      body: {
+        items: [{ tweet: 'Hello #Tweries' }],
+        userId: 'twitter|1183836409850814464'
+      }
+    };
     const res = { ...resBase };
 
     await useTweetstormHandler(req, res);

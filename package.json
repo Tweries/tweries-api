@@ -1,6 +1,6 @@
 {
   "name": "tweries-api",
-  "version": "0.12.1",
+  "version": "0.12.2",
   "private": true,
   "description": "API and back end for Tweries.",
   "scripts": {
