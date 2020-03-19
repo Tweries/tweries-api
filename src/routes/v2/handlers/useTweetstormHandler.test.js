@@ -93,7 +93,7 @@ describe('useTweetstormHandler', () => {
     expect(mockSend.mock.calls[0][0]).toMatchSnapshot(matcherV2);
   });
 
-  it.skip('not to throw', async () => {
+  it('not to throw', async () => {
     makeT.mockImplementation(() => ({
       post: () => {
         throw new Error('Status is a duplicate');
@@ -111,6 +111,6 @@ describe('useTweetstormHandler', () => {
 
     await expect(async () => {
       await useTweetstormHandler(req, res);
-    }).not.toThrow(); // Uhm ?!?
+    }).not.toThrow();
   });
 });
