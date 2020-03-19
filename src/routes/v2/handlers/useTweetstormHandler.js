@@ -20,54 +20,58 @@ async function useTweetstormHandler(req, res, next) {
     const response = createResponse({ data: { message: 'BYPASS' }, req });
     res.send(response);
   } else {
-    const auth0AccessToken = await getAuth0AccessToken({
-      clientId: AUTH0_CLIENT_ID,
-      clientSecret: AUTH0_CLIENT_SECRET,
-      domain: AUTH0_DOMAIN
-    });
-
-    const {
-      accessToken: twitterAccessToken,
-      accessTokenSecret: twitterAccessTokenSecret
-    } = await getTwitterTokens({
-      auth0AccessToken,
-      domain: AUTH0_DOMAIN,
-      userId
-    });
-
-    const T = makeT({
-      accessToken: twitterAccessToken,
-      accessTokenSecret: twitterAccessTokenSecret
-    });
-
-    let inReplyToStatusId = getStatusId(inReplyToTweetUrl);
-
-    const statusIds = [];
-    await asyncForEach(items, async item => {
-      const tweet = await createTweet({
-        inReplyToStatusId,
-        status: item.tweet,
-        T
+    try {
+      const auth0AccessToken = await getAuth0AccessToken({
+        clientId: AUTH0_CLIENT_ID,
+        clientSecret: AUTH0_CLIENT_SECRET,
+        domain: AUTH0_DOMAIN
       });
-      inReplyToStatusId = tweet.data.id_str;
-      statusIds.push(inReplyToStatusId);
-    });
 
-    const response = createResponse({
-      data: { items, statusIds, userId },
-      req
-    });
+      const {
+        accessToken: twitterAccessToken,
+        accessTokenSecret: twitterAccessTokenSecret
+      } = await getTwitterTokens({
+        auth0AccessToken,
+        domain: AUTH0_DOMAIN,
+        userId
+      });
 
-    // INFO: not a huge fan of this design
-    const { error, result } = await insert(response);
-    if (error) {
-      response.error = error;
+      const T = makeT({
+        accessToken: twitterAccessToken,
+        accessTokenSecret: twitterAccessTokenSecret
+      });
+
+      let inReplyToStatusId = getStatusId(inReplyToTweetUrl);
+
+      const statusIds = [];
+      await asyncForEach(items, async item => {
+        const tweet = await createTweet({
+          inReplyToStatusId,
+          status: item.tweet,
+          T
+        });
+        inReplyToStatusId = tweet.data.id_str;
+        statusIds.push(inReplyToStatusId);
+      });
+
+      const response = createResponse({
+        data: { items, statusIds, userId },
+        req
+      });
+
+      // INFO: not a huge fan of this design
+      const { error, result } = await insert(response);
+      if (error) {
+        response.error = error;
+      }
+      if (result) {
+        response.data.result = result;
+      }
+
+      res.send(response);
+    } catch (error) {
+      res.send({ error }); // Status is a duplicate
     }
-    if (result) {
-      response.data.result = result;
-    }
-
-    res.send(response);
   }
 }
 

@@ -92,4 +92,25 @@ describe('useTweetstormHandler', () => {
 
     expect(mockSend.mock.calls[0][0]).toMatchSnapshot(matcherV2);
   });
+
+  it.skip('not to throw', async () => {
+    makeT.mockImplementation(() => ({
+      post: () => {
+        throw new Error('Status is a duplicate');
+      }
+    }));
+
+    const req = {
+      ...reqBase,
+      body: {
+        items: [{ tweet: 'aaa' }, { tweet: 'bbb' }],
+        userId: 'twitter|1183836409850814464'
+      }
+    };
+    const res = { ...resBase };
+
+    await expect(async () => {
+      await useTweetstormHandler(req, res);
+    }).not.toThrow(); // Uhm ?!?
+  });
 });
