@@ -1,5 +1,5 @@
 const api = require('./api');
 
 test('api', () => {
-  expect(api).toMatchSnapshot();
+  expect(api.stack).toMatchSnapshot();
 });

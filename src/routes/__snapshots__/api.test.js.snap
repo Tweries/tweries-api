@@ -1,3 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`api 1`] = `[Function]`;
+exports[`api 1`] = `
+Array [
+  Layer {
+    "handle": [Function],
+    "keys": Array [],
+    "name": "bound dispatch",
+    "params": undefined,
+    "path": undefined,
+    "regexp": /\\^\\\\/v2\\\\/health\\\\/\\?\\$/i,
+    "route": Route {
+      "methods": Object {
+        "get": true,
+      },
+      "path": "/v2/health",
+      "stack": Array [
+        Layer {
+          "handle": [Function],
+          "keys": Array [],
+          "method": "get",
+          "name": "corsMiddleware",
+          "params": undefined,
+          "path": undefined,
+          "regexp": /\\^\\\\/\\?\\$/i,
+        },
+        Layer {
+          "handle": [Function],
+          "keys": Array [],
+          "method": "get",
+          "name": "getHealthHandler",
+          "params": undefined,
+          "path": undefined,
+          "regexp": /\\^\\\\/\\?\\$/i,
+        },
+      ],
+    },
+  },
+  Layer {
+    "handle": [Function],
+    "keys": Array [],
+    "name": "corsMiddleware",
+    "params": undefined,
+    "path": undefined,
+    "regexp": /\\^\\\\/v2\\\\/tweet\\\\/\\?\\(\\?=\\\\/\\|\\$\\)/i,
+    "route": undefined,
+  },
+  Layer {
+    "handle": [Function],
+    "keys": Array [],
+    "name": "useTweetHandler",
+    "params": undefined,
+    "path": undefined,
+    "regexp": /\\^\\\\/v2\\\\/tweet\\\\/\\?\\(\\?=\\\\/\\|\\$\\)/i,
+    "route": undefined,
+  },
+  Layer {
+    "handle": [Function],
+    "keys": Array [],
+    "name": "corsMiddleware",
+    "params": undefined,
+    "path": undefined,
+    "regexp": /\\^\\\\/v2\\\\/tweetstorm\\\\/\\?\\(\\?=\\\\/\\|\\$\\)/i,
+    "route": undefined,
+  },
+  Layer {
+    "handle": [Function],
+    "keys": Array [],
+    "name": "useTweetstormHandler",
+    "params": undefined,
+    "path": undefined,
+    "regexp": /\\^\\\\/v2\\\\/tweetstorm\\\\/\\?\\(\\?=\\\\/\\|\\$\\)/i,
+    "route": undefined,
+  },
+]
+`;

@@ -5,11 +5,11 @@ const getHealthHandler = require('./v2/handlers/getHealthHandler');
 const useTweetHandler = require('./v2/handlers/useTweetHandler');
 const useTweetstormHandler = require('./v2/handlers/useTweetstormHandler');
 
-const router = express.Router();
-
 const { ORIGIN } = process.env;
 
 const corsOptions = { origin: ORIGIN };
+
+const router = express.Router();
 
 router.get('/v2/health', cors(corsOptions), getHealthHandler);
 
