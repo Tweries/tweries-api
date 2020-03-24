@@ -44,7 +44,7 @@ async function useTweetstormHandler(req, res, next) {
       let inReplyToStatusId = getStatusId(inReplyToTweetUrl);
 
       const statusIds = [];
-      await asyncForEach(items, async item => {
+      await asyncForEach(items, async (item) => {
         const tweet = await createTweet({
           inReplyToStatusId,
           status: item.tweet,

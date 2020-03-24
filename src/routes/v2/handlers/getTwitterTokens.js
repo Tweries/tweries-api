@@ -15,7 +15,7 @@ async function getTwitterTokens({ auth0AccessToken, domain, userId }) {
   const {
     access_token: accessToken,
     access_token_secret: accessTokenSecret
-  } = identities.find(identity => identity.provider === 'twitter');
+  } = identities.find((identity) => identity.provider === 'twitter');
   return { accessToken, accessTokenSecret };
 }
 
