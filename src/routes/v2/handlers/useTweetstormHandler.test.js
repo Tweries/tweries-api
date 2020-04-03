@@ -51,7 +51,7 @@ describe('useTweetstormHandler', () => {
     const req = {
       ...reqBase,
       body: {
-        items: [{ tweet: 'Hello #Tweries' }],
+        items: JSON.stringify([{ tweet: 'Hello #Tweries' }]),
         userId: 'twitter|1183836409850814464'
       }
     };
@@ -71,7 +71,7 @@ describe('useTweetstormHandler', () => {
     const req = {
       ...reqBase,
       body: {
-        items: [{ tweet: 'Hello #Tweries' }],
+        items: JSON.stringify([{ tweet: 'Hello #Tweries' }]),
         userId: 'twitter|1183836409850814464'
       }
     };
