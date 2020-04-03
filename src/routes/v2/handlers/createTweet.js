@@ -1,4 +1,9 @@
-async function createTweet({ inReplyToStatusId = null, status, T }) {
+async function createTweet({
+  inReplyToStatusId = null,
+  mediaIdString = null,
+  status,
+  T
+}) {
   const options = {
     source:
       '<a href="https://tweries.com" rel="noopener noreferrer" target="_blank">Tweries</a>',
@@ -6,6 +11,9 @@ async function createTweet({ inReplyToStatusId = null, status, T }) {
   };
   if (inReplyToStatusId !== null) {
     options.in_reply_to_status_id = inReplyToStatusId;
+  }
+  if (mediaIdString !== null) {
+    options.media_ids = [mediaIdString];
   }
 
   const response = await T.post('statuses/update', options);
