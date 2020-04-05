@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`uploadMedia 1`] = `
+Object {
+  "media_data": "SEVMTE8=",
+}
+`;
+
+exports[`uploadMedia 2`] = `
+Object {
+  "alt_text": Object {
+    "text": "hello.jpg",
+  },
+  "media_id": "0x123",
+}
+`;
+
+exports[`uploadMedia 3`] = `
+Object {
+  "mediaIdString": "0x123",
+  "media_id_string": "0x123",
+}
+`;
