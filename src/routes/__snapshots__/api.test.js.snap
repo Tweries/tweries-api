@@ -66,6 +66,15 @@ Array [
   Layer {
     "handle": [Function],
     "keys": Array [],
+    "name": "multerMiddleware",
+    "params": undefined,
+    "path": undefined,
+    "regexp": /\\^\\\\/v2\\\\/tweetstorm\\\\/\\?\\(\\?=\\\\/\\|\\$\\)/i,
+    "route": undefined,
+  },
+  Layer {
+    "handle": [Function],
+    "keys": Array [],
     "name": "useTweetstormHandler",
     "params": undefined,
     "path": undefined,

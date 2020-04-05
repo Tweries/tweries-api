@@ -6,18 +6,23 @@ const getAuth0AccessToken = require('./getAuth0AccessToken');
 const getStatusId = require('./getStatusId');
 const getTwitterTokens = require('./getTwitterTokens');
 const makeT = require('./makeT');
+const uploadMedia = require('./uploadMedia');
 
 const { AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_DOMAIN } = process.env;
 
 // eslint-disable-next-line no-unused-vars
 async function useTweetstormHandler(req, res, next) {
   const {
-    body: { items, inReplyToTweetUrl, userId }
+    body: { items, inReplyToTweetUrl, userId },
+    file
   } = req;
 
   const { BYPASS } = process.env;
   if (BYPASS === 'true') {
-    const response = createResponse({ data: { message: 'BYPASS' }, req });
+    const response = createResponse({
+      data: { message: 'BYPASS', statusIds: ['BYPASS'], userId },
+      req
+    });
     res.send(response);
   } else {
     try {
@@ -42,11 +47,21 @@ async function useTweetstormHandler(req, res, next) {
       });
 
       let inReplyToStatusId = getStatusId(inReplyToTweetUrl);
+      let mediaIdString = null;
 
       const statusIds = [];
-      await asyncForEach(items, async (item) => {
+
+      await asyncForEach(JSON.parse(items), async (item) => {
+        if (file && statusIds.length === 0) {
+          const data = await uploadMedia({ file, T });
+          mediaIdString = data.mediaIdString;
+        } else {
+          mediaIdString = null;
+        }
+
         const tweet = await createTweet({
           inReplyToStatusId,
+          mediaIdString,
           status: item.tweet,
           T
         });
@@ -55,7 +70,7 @@ async function useTweetstormHandler(req, res, next) {
       });
 
       const response = createResponse({
-        data: { items, statusIds, userId },
+        data: { items: JSON.parse(items), statusIds, userId },
         req
       });
 
