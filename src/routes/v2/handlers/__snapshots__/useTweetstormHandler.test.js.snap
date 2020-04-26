@@ -4,6 +4,10 @@ exports[`useTweetstormHandler BYPASS 1`] = `
 Object {
   "data": Object {
     "message": "BYPASS",
+    "statusIds": Array [
+      "1001",
+    ],
+    "userId": "twitter|1183836409850814464",
   },
   "error": undefined,
   "meta": Object {
