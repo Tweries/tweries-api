@@ -17,7 +17,14 @@ async function useTweetstormHandler(req, res, next) {
 
   const { BYPASS } = process.env;
   if (BYPASS === 'true') {
-    const response = createResponse({ data: { message: 'BYPASS' }, req });
+    const response = createResponse({
+      data: {
+        message: 'BYPASS',
+        statusIds: ['1001'],
+        userId: 'twitter|1183836409850814464'
+      },
+      req
+    });
     res.send(response);
   } else {
     try {
