@@ -21,7 +21,7 @@
     "jest-fetch-mock": "^3.0.3",
     "mongodb": "^3.5.5",
     "morgan": "^1.10.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "pug": "^2.0.4",
     "twit": "^2.2.11"
   },
